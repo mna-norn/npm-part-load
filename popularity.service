@@ -1,0 +1,17 @@
+[Unit]
+Description=Load index of popularity from NPM registry
+After=network-online.target
+Wants=network-online.target system-networkd-wait-online.service
+
+StartLimItntervalSec=10
+StartLimitBurst=10
+
+[Service]
+Restart=always
+RestartSec=5s
+WorkingDirectory=/media/norn/Vol500/npm-repo/repo
+
+ExecStart=/media/norn/Vol500/npm-repo/repo/popularity.py
+
+[Install]
+WantedBy=multi-user.target
